@@ -1,0 +1,28 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.productenModel
+@{
+    ViewData["Title"] = "Product page";
+}
+
+<table class="Producten">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Prijs</th>
+            <th>Omschrijving</th>
+        </tr>
+    </thead>
+    @foreach (var c in Model.Products)
+    {        
+        <tr>
+            <td>@Html.DisplayName(c.Name)</td>
+            <td>@Html.DisplayName(c.Price)</td>
+            <td>@Html.DisplayName(c.Description)</td>       
+        </tr>
+    }
+</table>
+
+        @* public Product? GetProductById(int id)
+        {
+            return _context.Products.Include(p => p.Parts).FirstOrDefault(p => p.Id == id);
+        } *@ 
