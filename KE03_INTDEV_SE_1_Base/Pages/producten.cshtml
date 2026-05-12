@@ -12,17 +12,12 @@
             <th>Omschrijving</th>
         </tr>
     </thead>
-    @foreach (var c in Model.Products)
+    @foreach (var p in Model.)
     {        
         <tr>
-            <td>@Html.DisplayName(c.Name)</td>
-            <td>@Html.DisplayName(c.Price)</td>
-            <td>@Html.DisplayName(c.Description)</td>       
+            <td>@Html.DisplayName(p.Name)</td>
+            <td>@Html.DisplayName(p.Price)</td>
+            <td>@Html.DisplayName(p.Description)</td>       
         </tr>
     }
 </table>
-
-        @* public Product? GetProductById(int id)
-        {
-            return _context.Products.Include(p => p.Parts).FirstOrDefault(p => p.Id == id);
-        } *@ 
