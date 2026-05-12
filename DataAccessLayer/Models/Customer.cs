@@ -10,8 +10,8 @@ namespace DataAccessLayer.Models
     public class Customer
     {
         [Key]
-        [Required]
-        public int Id { get; set; }
+        [Required] //annotations, data annotations, validation
+        public int Id { get; set; } //encapulsation, private maken
 
         [Required]
         public string Name { get; set; }
