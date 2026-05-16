@@ -4,7 +4,7 @@
     ViewData["Title"] = "Product page";
 }
 
-<table class="Producten">
+<table class="table table-striped"> <!-- create a table to display products -->
     <thead>
         <tr>
             <th>Product</th>
@@ -12,12 +12,16 @@
             <th>Omschrijving</th>
         </tr>
     </thead>
-    @foreach (var p in Model.)
-    {        
-        <tr>
-            <td>@Html.DisplayName(p.Name)</td>
-            <td>@Html.DisplayName(p.Price)</td>
-            <td>@Html.DisplayName(p.Description)</td>       
-        </tr>
-    }
+
+    <tbody>
+        @foreach (var p in Model.Products) // Loop through the products and display them in the table
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Description</td>
+                <td><a asp-page="/producteninfo" asp-route-id="@p.Id" class="btn btn-info"> Info</a></td>
+            </tr>
+        }
+    </tbody>
 </table>

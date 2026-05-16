@@ -1,0 +1,40 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.producteninfoModel
+
+@{
+    ViewData["Title"] = "Product informatie"; <!-- Display the product name as the page title -->
+}
+
+<h1>@Model.Product?.Name</h1> <!-- Create a card to display the product information -->
+
+<div class="card p-4">
+
+    <h4>Prijs</h4>
+    <p>€ @Model.Product?.Price</p>
+
+    <h4>Omschrijving</h4>
+    <p>@Model.Product?.Description</p>
+
+    <h4>Onderdelen</h4>
+
+    @if (Model.Product?.Parts != null && Model.Product.Parts.Any())
+    {
+        <ul class="list-group">
+            @foreach (var part in Model.Product.Parts) // Loop through the parts and display their names in a list
+            {
+                <li class="list-group-item">
+                    <strong>@part.Name</strong><br />
+                    @part.Description
+                </li>
+            }
+        </ul>
+    }
+
+    else
+    {
+        <p>Geen onderdelen gevonden voor dit product.</p>
+    }
+
+</div>
+
+<a asp-page="/producten" class="btn btn-secondary mt-3"> Terug </a> <!-- back to product page -->
