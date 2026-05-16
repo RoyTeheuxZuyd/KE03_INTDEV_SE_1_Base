@@ -1,6 +1,7 @@
 using DataAccessLayer;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Repositories;
+using KE03_INTDEV_SE_1_Base.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace KE03_INTDEV_SE_1_Base
@@ -22,6 +23,9 @@ namespace KE03_INTDEV_SE_1_Base
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IPartRepository, PartRepository>();
 
+            // Shopping cart
+            builder.Services.AddSingleton<CartService>();
+
             // Add services to the container.
             builder.Services.AddRazorPages();
 
@@ -31,7 +35,7 @@ namespace KE03_INTDEV_SE_1_Base
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios
                 app.UseHsts();
             }
 
@@ -40,7 +44,11 @@ namespace KE03_INTDEV_SE_1_Base
                 var services = scope.ServiceProvider;
 
                 var context = services.GetRequiredService<MatrixIncDbContext>();
+
+                // BELANGRIJK: reset database voor consistente seed (development only)
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+
                 MatrixIncDbInitializer.Initialize(context);
             }
 

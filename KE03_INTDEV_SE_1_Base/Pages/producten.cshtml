@@ -4,23 +4,42 @@
     ViewData["Title"] = "Product page";
 }
 
-<table class="table table-striped"> <!-- create a table to display products -->
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Product</th>
             <th>Prijs</th>
             <th>Omschrijving</th>
+            <th>Info</th>
+            <th>Winkelwagen</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var p in Model.Products) // Loop through the products and display them in the table
+        @foreach (var p in Model.Products)
         {
             <tr>
                 <td>@p.Name</td>
-                <td>@p.Price</td>
+                <td>€ @p.Price</td>
                 <td>@p.Description</td>
-                <td><a asp-page="/producteninfo" asp-route-id="@p.Id" class="btn btn-info"> Info</a></td>
+
+                <td>
+                    <a asp-page="/producteninfo"
+                       asp-route-id="@p.Id"
+                       class="btn btn-info">
+                        Info
+                    </a>
+                </td>
+
+                <td>
+                    <form method="post" asp-page-handler="AddToCart">
+                        <input type="hidden" name="id" value="@p.Id" />
+
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Voeg toe
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

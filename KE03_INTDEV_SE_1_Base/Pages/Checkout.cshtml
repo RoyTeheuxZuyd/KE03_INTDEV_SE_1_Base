@@ -1,0 +1,46 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.CheckoutModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1>Klantgegevens</h1>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label>Voornaam</label>
+        <input asp-for="FirstName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Achternaam</label>
+        <input asp-for="LastName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Straatnaam</label>
+        <input asp-for="Street" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Straatnummer</label>
+        <input asp-for="StreetNumber" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Postcode</label>
+        <input asp-for="PostalCode" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Stad</label>
+        <input asp-for="City" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Bestelling plaatsen
+    </button>
+
+</form>

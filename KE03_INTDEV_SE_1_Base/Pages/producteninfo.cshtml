@@ -37,4 +37,12 @@
 
 </div>
 
+<form method="post" asp-page-handler="AddToCart">
+    <input type="hidden" name="id" value="@Model.Product?.Id" />
+
+    <button type="submit" class="btn btn-success mt-3">
+        Voeg toe aan winkelwagen
+    </button>
+</form>
+
 <a asp-page="/producten" class="btn btn-secondary mt-3"> Terug </a> <!-- back to product page -->
