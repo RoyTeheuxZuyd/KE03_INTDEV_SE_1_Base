@@ -1,8 +1,8 @@
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
+using KE03_INTDEV_SE_1_Base.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using KE03_INTDEV_SE_1_Base.Services;
 
 namespace KE03_INTDEV_SE_1_Base.Pages
 {
@@ -33,16 +33,28 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             return Page();
         }
 
-        public IActionResult OnPostAddToCart(int id)
+        public IActionResult OnPostAddToCart(int id, int quantity)
         {
             var product = _productRepository.GetProductById(id);
 
-            if (product != null)
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            for (int i = 0; i < quantity; i++)
             {
                 _cartService.AddToCart(product);
             }
 
-            return RedirectToPage(new { id = id });
+            return RedirectToPage(new { id });
+        }
+
+        public IActionResult OnPostRemoveFromCart(int id)
+        {
+            _cartService.RemoveFromCart(id);
+
+            return RedirectToPage(new { id });
         }
     }
 }

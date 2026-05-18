@@ -14,41 +14,60 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">
-                    Matrix Inc.
-                    @* <img src="../MediaFunctional/matrix_inc_logo.png" /> *@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 py-0"> 
+            <div class="container-fluid px-0 d-flex align-items-center">
+                <a class="navbar-brand m-0 p-0" asp-area="" asp-page="/Index">
+                    <img src="~/MediaFunctional/matrix_inc_logo.png"
+                         alt="Matrix Inc Logo"
+                         style="height: 100px; width: auto;" />
                 </a>
 
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse d-sm-flex justify-content-center">
+                    <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Producten">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Producten">
                                 Assortiment
                             </a>
                         </li>
-                        <li class="nav-item ms-auto">
-                            <a asp-page="/Winkelwagen" class="btn btn-primary">
-                                Winkelwagen (@CartService.GetTotalItems())
-                            </a>
-                        </li>
                     </ul>
+                </div>
+
+                <div class="d-none d-sm-flex align-items-center ms-auto me-3">
+                    <a asp-page="/Winkelwagen" class="position-relative d-inline-block">
+                        <img src="~/MediaFunctional/shoppingcart_icon.png"
+                             alt="Winkelwagen"
+                             style="height: 45px; width: auto;" />
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @CartService.GetTotalItems()
+                        </span>
+
+                    </a>
+                </div>
+
+                <div class="d-flex d-sm-none align-items-center ms-auto me-3">
+                    <a asp-page="/Winkelwagen" class="position-relative d-inline-block me-3">
+                        <img src="~/MediaFunctional/shoppingcart_icon.png"
+                             alt="Winkelwagen"
+                             style="height: 45px; width: auto;" />
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @CartService.GetTotalItems()
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
             </div>
         </nav>

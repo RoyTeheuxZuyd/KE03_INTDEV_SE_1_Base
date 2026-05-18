@@ -11,7 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Media\" />
+    <None Include="wwwroot\MediaFunctional\matrixwallpaper_bg.jpg" />
+    <None Include="wwwroot\MediaFunctional\matrix_inc_logo.png" />
+    <None Include="wwwroot\MediaFunctional\matrix_logo.png" />
+    <None Include="wwwroot\MediaFunctional\shoppingcart_icon.png" />
+    <None Include="wwwroot\MediaFunctional\trashcanicon.png" />
+    <None Include="wwwroot\MediaFunctional\wallpaper_bg_marble.jpg" />
+    <None Include="wwwroot\Media\empdevice.jpg" />
+    <None Include="wwwroot\Media\jackinchair.jpg" />
+    <None Include="wwwroot\Media\nebuchadnezzar.jpg" />
   </ItemGroup>
 
 </Project>

@@ -2,45 +2,91 @@
 @model KE03_INTDEV_SE_1_Base.Pages.producteninfoModel
 
 @{
-    ViewData["Title"] = "Product informatie"; <!-- Display the product name as page title -->
+    ViewData["Title"] = "Product informatie";
+    <!-- Display the product name as page title -->
+    var imagePath = $"/Media/{Model.Product?.ProductImageName}";
 }
 
-<h1>@Model.Product?.Name</h1> <!-- Create card to display the info -->
+<div class="container">
+    <a asp-page="/producten" class="btn btn-secondary mb-3">
+        Terug
+    </a> <!-- return back to product page -->
 
-<div class="card p-4">
-    <h4>Prijs</h4>
-    <p>€ @Model.Product?.Price</p>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@imagePath"
+                 alt="@Model.Product?.Name"
+                 class="img-fluid rounded shadow"
+                 style="width: 100%; object-fit: cover;" />
+        </div>
 
-    <h4>Omschrijving</h4>
-    <p>@Model.Product?.Description</p>
+        <div class="col-md-6">
+            <h1>@Model.Product?.Name</h1> <!-- Create card to display the info -->
+            <div class="card p-4">
+                <h4>Prijs</h4>
+                <p>€ @Model.Product?.Price</p>
 
-    <h4>Onderdelen</h4>
+                <h4>Omschrijving</h4>
+                <p>@Model.Product?.Description</p>
 
-    @if (Model.Product?.Parts != null && Model.Product.Parts.Any())
-    {
-        <ul class="list-group">
-            @foreach (var part in Model.Product.Parts) // Loop through the parts for product and display names in a list
-            {
-                <li class="list-group-item">
-                    <strong>@part.Name</strong><br />
-                    @part.Description
-                </li>
-            }
-        </ul>
-    }
+                <h4>Onderdelen</h4>
 
-    else
-    {
-        <p>Geen onderdelen gevonden voor dit product.</p>
-    }
+                @if (Model.Product?.Parts != null && Model.Product.Parts.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var part in Model.Product.Parts) // Loop through the parts for product and display names in a list
+                        {
+                            <li class="list-group-item">
+                                <strong>@part.Name</strong><br />
+                                @part.Description
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Geen onderdelen gevonden voor dit product.</p>
+                }
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mt-3">
+                <form method="post" asp-page-handler="AddToCart">
+                    <input type="hidden" name="id" value="@Model.Product?.Id" />
+
+                    <div class="d-flex align-items-center gap-3">
+                        <label for="quantity" class="form-label mb-0">
+                            Aantal
+                        </label>
+
+                        <input type="number"
+                               id="quantity"
+                               name="quantity"
+                               value="1"
+                               min="1"
+                               class="form-control"
+                               style="width: 100px;" />
+
+                        <button type="submit"
+                                class="btn btn-success d-flex align-items-center gap-2">
+                            <img src="~/MediaFunctional/shoppingcart_icon.png"
+                                 alt="Winkelwagen"
+                                 style="height: 24px; width: auto;" />
+                            Voeg toe
+                        </button>
+                    </div>
+                </form>
+
+                <form method="post" asp-page-handler="RemoveFromCart">
+                    <input type="hidden" name="id" value="@Model.Product?.Id" />
+
+                    <button type="submit"
+                            class="btn btn-danger d-flex align-items-center justify-content-center">
+                        <img src="~/MediaFunctional/trashcanicon.png"
+                             alt="Verwijderen"
+                             style="height: 24px; width: auto;" />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-<form method="post" asp-page-handler="AddToCart">
-    <input type="hidden" name="id" value="@Model.Product?.Id" />
-
-    <button type="submit" class="btn btn-success mt-3">
-        Voeg toe aan winkelwagen
-    </button>
-</form>
-
-<a asp-page="/producten" class="btn btn-secondary mt-3"> Terug </a> <!-- return back to product page -->
