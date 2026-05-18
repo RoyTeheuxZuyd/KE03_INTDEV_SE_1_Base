@@ -7,12 +7,12 @@ namespace KE03_INTDEV_SE_1_Base.Services
     {
         private readonly List<CartItem> _items = new();
 
-        public List<CartItem> GetItems()
+        public List<CartItem> GetItems() // get the shop cart items
         {
             return _items;
         }
 
-        public void AddToCart(Product product)
+        public void AddToCart(Product product) // add item to the shop cart
         {
             var existing = _items.FirstOrDefault(x => x.Product.Id == product.Id);
 
@@ -30,7 +30,7 @@ namespace KE03_INTDEV_SE_1_Base.Services
             }
         }
 
-        public void RemoveFromCart(int productId)
+        public void RemoveFromCart(int productId) // remove from the shop cart
         {
             var item = _items.FirstOrDefault(x => x.Product.Id == productId);
 
@@ -40,7 +40,7 @@ namespace KE03_INTDEV_SE_1_Base.Services
             }
         }
 
-        public void IncreaseQuantity(int productId)
+        public void IncreaseQuantity(int productId) //increase amount of item in shop cart
         {
             var item = _items.FirstOrDefault(x => x.Product.Id == productId);
 
@@ -50,7 +50,7 @@ namespace KE03_INTDEV_SE_1_Base.Services
             }
         }
 
-        public void DecreaseQuantity(int productId)
+        public void DecreaseQuantity(int productId) //decrease amount of item in shop cart
         {
             var item = _items.FirstOrDefault(x => x.Product.Id == productId);
 
@@ -65,12 +65,12 @@ namespace KE03_INTDEV_SE_1_Base.Services
             }
         }
 
-        public void Clear()
+        public void Clear() //clear the shop cart
         {
             _items.Clear();
         }
 
-        public int GetTotalItems()
+        public int GetTotalItems() //get total amount in the shop cart for final pricing
         {
             return _items.Sum(x => x.Quantity);
         }

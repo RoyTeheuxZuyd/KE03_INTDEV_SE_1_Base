@@ -2,13 +2,12 @@
 @model KE03_INTDEV_SE_1_Base.Pages.producteninfoModel
 
 @{
-    ViewData["Title"] = "Product informatie"; <!-- Display the product name as the page title -->
+    ViewData["Title"] = "Product informatie"; <!-- Display the product name as page title -->
 }
 
-<h1>@Model.Product?.Name</h1> <!-- Create a card to display the product information -->
+<h1>@Model.Product?.Name</h1> <!-- Create card to display the info -->
 
 <div class="card p-4">
-
     <h4>Prijs</h4>
     <p>€ @Model.Product?.Price</p>
 
@@ -20,7 +19,7 @@
     @if (Model.Product?.Parts != null && Model.Product.Parts.Any())
     {
         <ul class="list-group">
-            @foreach (var part in Model.Product.Parts) // Loop through the parts and display their names in a list
+            @foreach (var part in Model.Product.Parts) // Loop through the parts for product and display names in a list
             {
                 <li class="list-group-item">
                     <strong>@part.Name</strong><br />
@@ -34,7 +33,6 @@
     {
         <p>Geen onderdelen gevonden voor dit product.</p>
     }
-
 </div>
 
 <form method="post" asp-page-handler="AddToCart">
@@ -45,4 +43,4 @@
     </button>
 </form>
 
-<a asp-page="/producten" class="btn btn-secondary mt-3"> Terug </a> <!-- back to product page -->
+<a asp-page="/producten" class="btn btn-secondary mt-3"> Terug </a> <!-- return back to product page -->

@@ -21,7 +21,7 @@
         </thead>
 
         <tbody>
-            @foreach (var item in Model.CartItems)
+            @foreach (var item in Model.CartItems) // list of products in shopping cart and what to display
             {
                 <tr>
                     <td>@item.Product.Name</td>
@@ -35,17 +35,17 @@
                     <td class="d-flex gap-1">
 
                         <form method="post" asp-page-handler="Decrease">
-                            <input type="hidden" name="id" value="@item.Product.Id" />
+                            <input type="hidden" name="id" value="@item.Product.Id" /> <!-- decrease item amount -->
                             <button class="btn btn-outline-secondary btn-sm">-</button>
                         </form>
 
                         <form method="post" asp-page-handler="Increase">
-                            <input type="hidden" name="id" value="@item.Product.Id" />
+                            <input type="hidden" name="id" value="@item.Product.Id" /> <!-- increase item amount -->
                             <button class="btn btn-outline-secondary btn-sm">+</button>
                         </form>
 
                         <form method="post" asp-page-handler="Remove">
-                            <input type="hidden" name="id" value="@item.Product.Id" />
+                            <input type="hidden" name="id" value="@item.Product.Id" /> <!-- remove an item -->
                             <button class="btn btn-danger btn-sm">×</button>
                         </form>
 
@@ -64,12 +64,12 @@
 
     <div class="d-flex gap-2 mt-3">
         <a asp-page="/Checkout" class="btn btn-success">
-            Afrekenen
+            Afrekenen <!-- pay order -->
         </a>
 
         <form method="post" asp-page-handler="Clear">
             <button class="btn btn-warning">
-                Winkelwagen leegmaken
+                Winkelwagen leegmaken <!-- make shop cart empty -->
             </button>
         </form>
     </div>
@@ -77,6 +77,6 @@
 else
 {
     <div class="alert alert-info">
-        Je winkelwagen is momenteel leeg.
+        Je winkelwagen is momenteel leeg. <!-- if the shop cart is empty -->
     </div>
 }
