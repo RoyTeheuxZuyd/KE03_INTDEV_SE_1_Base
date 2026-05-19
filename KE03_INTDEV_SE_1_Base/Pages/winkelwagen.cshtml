@@ -16,14 +16,14 @@
                 <th>Aantal</th>
                 <th>Prijs</th>
                 <th>Totaal</th>
-                <th>Actie</th>
+                <th>Actie</th> <!-- remove later and make sales part of the price instead if even implemented not really a must-->
             </tr>
         </thead>
 
         <tbody>
             @foreach (var item in Model.CartItems) // list of products in shopping cart and what to display
             {
-                var imagePath = $"/Media/{item.Product.ProductImageName}";
+                var imagePath = $"/Media/{item.Product.ProductImageName}"; // retrieve images for products by having an associated productimagename in products model and that will then match the imagename. this method isnt perfect but works for now
 
                 <tr>
                     <td>
@@ -38,7 +38,6 @@
 
                     <td>
                         <div class="d-flex align-items-center gap-2">
-
                             <form method="post" asp-page-handler="Decrease">
                                 <input type="hidden" name="id" value="@item.Product.Id" /> <!-- decrease item amount -->
 
