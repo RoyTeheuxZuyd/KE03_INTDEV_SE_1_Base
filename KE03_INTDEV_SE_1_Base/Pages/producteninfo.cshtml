@@ -76,6 +76,7 @@
                     </div>
                 </form>
 
+                @* disabled after feedback for website, but the code for it still works:
                 <form method="post" asp-page-handler="RemoveFromCart">
                     <input type="hidden" name="id" value="@Model.Product?.Id" />
 
@@ -85,7 +86,7 @@
                              alt="Verwijderen"
                              style="height: 24px; width: auto;" />
                     </button>
-                </form>
+                </form> *@
             </div>
         </div>
     </div>

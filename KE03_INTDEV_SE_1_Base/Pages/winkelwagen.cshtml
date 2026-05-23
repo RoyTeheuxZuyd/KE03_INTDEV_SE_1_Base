@@ -87,7 +87,11 @@
 
     <div class="d-flex gap-2 mt-3">
         <a asp-page="/Checkout" class="btn btn-success">
-            Afrekenen <!-- pay order -->
+            afrekenen zonder account <!-- pay order -->
+        </a>
+
+        <a asp-page="/Checkout" class="btn btn-success">
+            Inloggen om af te rekenen <!-- pay order with login -->
         </a>
 
         <form method="post" asp-page-handler="Clear">

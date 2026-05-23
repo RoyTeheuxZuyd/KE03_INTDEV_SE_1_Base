@@ -20,23 +20,25 @@ namespace DataAccessLayer
             // TODO: Hier moet ik nog wat namen verzinnen die betrekking hebben op de matrix.
             // - Denk aan de m3 boutjes, moertjes en ringetjes.
             // - Denk aan namen van schepen
-            // - Denk aan namen van vliegtuigen            
-            var customers = new Customer[]
-            {
-                new Customer { Name = "Neo", Address = "123 Elm St" , Active=true},
-                new Customer { Name = "Morpheus", Address = "456 Oak St", Active = true },
-                new Customer { Name = "Trinity", Address = "789 Pine St", Active = true }
-            };
-            context.Customers.AddRange(customers);
+            // - Denk aan namen van vliegtuigen
+            
+            //Deactive for now due to the order history page which is still w.i.p and displaying these incorrectly. 
+            //var customers = new Customer[]
+            //{
+            //    new Customer { Name = "Neo", Address = "123 Elm St" , Active=true},
+            //    new Customer { Name = "Morpheus", Address = "456 Oak St", Active = true },
+            //    new Customer { Name = "Trinity", Address = "789 Pine St", Active = true }
+            //};
+            //context.Customers.AddRange(customers);
 
-            var orders = new Order[]
-            {
-                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01")},
-                new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01")},
-                new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01")},
-                new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01")}
-            };
-            context.Orders.AddRange(orders);
+            //var orders = new Order[]
+            //{
+            //    new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-01-01")},
+            //    new Order { Customer = customers[0], OrderDate = DateTime.Parse("2021-02-01")},
+            //    new Order { Customer = customers[1], OrderDate = DateTime.Parse("2021-02-01")},
+            //    new Order { Customer = customers[2], OrderDate = DateTime.Parse("2021-03-01")}
+            //};
+            //context.Orders.AddRange(orders);
 
             var parts = new Part[]
             {
