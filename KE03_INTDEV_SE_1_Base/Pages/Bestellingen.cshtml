@@ -1,0 +1,123 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.BestellingenModel
+
+@{
+    ViewData["Title"] = "Orders Page";
+}
+
+<div class="container">
+    <h1 class="mb-4">
+        Bestellingen
+    </h1>
+
+    @if (Model.Orders.Any())
+    {
+        @foreach (var customerGroup in Model.Orders.GroupBy(o => o.Customer))
+        {
+            var customer = customerGroup.Key;
+
+            <div class="card shadow mb-5">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-1">
+                        @customer?.Name
+                    </h3>
+
+                    <p class="mb-1">
+                        @customer?.Address
+                    </p>
+
+                    <p class="mb-1">
+                        Aantal bestellingen:
+                        @customerGroup.Count()
+                    </p>
+
+                    <p class="mb-0">
+                        Laatste bestelling:
+                        @customerGroup.Max(o => o.OrderDate).ToString("dd-MM-yyyy")
+                    </p>
+                </div>
+
+                <div class="card-body">
+                    @foreach (var order in customerGroup.OrderByDescending(o => o.OrderDate))
+                    {
+                        <div class="border rounded p-3 mb-4">
+                            <h5 class="mb-3">
+                                Order van @order.OrderDate.ToString("dd-MM-yyyy")
+                            </h5>
+
+                            @if (order.Products.Any())
+                            {
+                                <div class="row g-3">
+
+                                    @foreach (var product in order.Products)
+                                    {
+                                        var imagePath = $"/Media/{product.ProductImageName}";
+
+                                        <div class="col-md-4">
+                                            <div class="card h-100">
+                                                <img src="@imagePath"
+                                                     class="card-img-top"
+                                                     alt="@product.Name"
+                                                     style="height: 200px; object-fit: cover;" />
+
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        @product.Name
+                                                    </h5>
+
+                                                    <p class="card-text">
+                                                        @product.Description
+                                                    </p>
+
+                                                    <h6>
+                                                        € @product.Price
+                                                    </h6>
+
+                                                    @if (product.Parts.Any())
+                                                    {
+                                                        <hr />
+                                                        <h6>
+                                                            Onderdelen
+                                                        </h6>
+
+                                                        <ul class="list-group">
+                                                            @foreach (var part in product.Parts)
+                                                            {
+                                                                <li class="list-group-item">
+                                                                    <strong>@part.Name</strong><br />
+                                                                    @part.Description
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                <hr />
+                                <h5 class="text-end">
+                                    Ordertotaal:
+                                    € @order.Products.Sum(p => p.Price)
+                                </h5>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    Geen producten gevonden in deze bestelling.
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Er zijn nog geen bestellingen geplaatst.
+        </div>
+    }
+</div>

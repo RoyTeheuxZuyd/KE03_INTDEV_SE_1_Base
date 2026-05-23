@@ -1,28 +1,26 @@
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KE03_INTDEV_SE_1_Base.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IProductRepository _productRepository;
 
-        public IList<Customer> Customers { get; set; }
+        public IEnumerable<Product> LatestProducts { get; set; } = new List<Product>();
 
-        public IndexModel(ILogger<IndexModel> logger, ICustomerRepository customerRepository)
+        public IndexModel(IProductRepository productRepository)
         {
-            _logger = logger;
-            _customerRepository = customerRepository;
-            Customers = new List<Customer>();
+            _productRepository = productRepository;
         }
 
-        public void OnGet()
-        {            
-            Customers = _customerRepository.GetAllCustomers().ToList();                            
-            _logger.LogInformation($"getting all {Customers.Count} customers");
+        public void OnGet() //display new products for customers
+        {
+            LatestProducts = _productRepository
+                .GetAllProducts()
+                .OrderByDescending(p => p.Id)
+                .Take(3);
         }
     }
 }
