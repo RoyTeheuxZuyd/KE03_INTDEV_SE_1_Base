@@ -26,23 +26,17 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             _productRepository = productRepository;
         }
 
-        [BindProperty]
-        public string FirstName { get; set; }
+        [BindProperty] public string FirstName { get; set; }
 
-        [BindProperty]
-        public string LastName { get; set; }
+        [BindProperty] public string LastName { get; set; }
 
-        [BindProperty]
-        public string Street { get; set; }
+        [BindProperty] public string Street { get; set; }
 
-        [BindProperty]
-        public string StreetNumber { get; set; }
+        [BindProperty] public string StreetNumber { get; set; }
 
-        [BindProperty]
-        public string City { get; set; }
+        [BindProperty] public string City { get; set; }
 
-        [BindProperty]
-        public string PostalCode { get; set; }
+        [BindProperty] public string PostalCode { get; set; }
 
         public void OnGet()
         {
@@ -62,45 +56,24 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 return RedirectToPage("/Winkelwagen");
             }
 
-            var fullName = $"{FirstName} {LastName}";
-            var fullAddress = $"{Street} {StreetNumber}, {PostalCode} {City}";
+            // Optional backup: keep TempData (not strictly needed if we pass params)
+            TempData["FirstName"] = FirstName;
+            TempData["LastName"] = LastName;
+            TempData["Street"] = Street;
+            TempData["StreetNumber"] = StreetNumber;
+            TempData["PostalCode"] = PostalCode;
+            TempData["City"] = City;
 
-            var customer = _customerRepository
-                .GetAllCustomers()
-                .FirstOrDefault(c => c.Name == fullName && c.Address == fullAddress);
-
-            if (customer == null)
+            // Redirect to DemoPayment and pass the customer data as route/query parameters
+            return RedirectToPage("/DemoPayment", new
             {
-                customer = new Customer
-                {
-                    Name = fullName,
-                    Address = fullAddress
-                };
-
-                _customerRepository.AddCustomer(customer);
-            }
-
-            var order = new Order
-            {
-                OrderDate = DateTime.Now,
-                Customer = customer
-            };
-
-            foreach (var item in cartItems)
-            {
-                var product = _productRepository.GetProductById(item.Product.Id);
-
-                if (product != null)
-                {
-                    order.Products.Add(product);
-                }
-            }
-
-            _orderRepository.AddOrder(order);
-
-            _cartService.Clear();
-
-            return RedirectToPage("/Index");
+                firstName = FirstName,
+                lastName = LastName,
+                street = Street,
+                streetNumber = StreetNumber,
+                postalCode = PostalCode,
+                city = City
+            });
         }
     }
 }

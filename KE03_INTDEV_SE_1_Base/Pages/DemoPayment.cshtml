@@ -1,0 +1,108 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.DemoPaymentModel
+
+@{
+    ViewData["Title"] = "Demo Betaling";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">betaling</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        Schoolproject demo — er wordt geen echte betaling verwerkt.
+                    </div>
+
+                    <h5 class="mb-2">Klantgegevens</h5>
+                    @if (!string.IsNullOrWhiteSpace(Model.FirstName))
+                    {
+                        <div class="mb-3">
+                            <strong>@Model.FirstName @Model.LastName</strong><br/>
+                            @Model.Street @Model.StreetNumber<br/>
+                            @Model.PostalCode @Model.City
+                        </div>
+                    }
+
+                    <h5 class="mb-3">Bestellingsoverzicht</h5>
+
+                    @if (Model.CartItems.Any())
+                    {
+                        <table class="table mb-3">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th class="text-center">Aantal</th>
+                                <th class="text-end">Prijs</th>
+                                <th class="text-end">Totaal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <tr>
+                                    <td>@item.Product.Name</td>
+                                    <td class="text-center">@item.Quantity</td>
+                                    <td class="text-end">€ @(item.Product.Price.ToString("0.00"))</td>
+                                    <td class="text-end">€ @((item.Product.Price * item.Quantity).ToString("0.00"))</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Subtotaal</span>
+                                <span>€ @(Model.Subtotal.ToString("0.00"))</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Verzendkosten</span>
+                                <span>€ @(Model.ShippingCosts.ToString("0.00"))</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between fw-bold">
+                                <span>Totaal</span>
+                                <span>€ @(Model.Total.ToString("0.00"))</span>
+                            </li>
+                        </ul>
+
+                        <form method="post">
+                            <!-- Persist customer details as hidden fields so POST always contains them -->
+                            <input type="hidden" name="FirstName" value="@Model.FirstName"/>
+                            <input type="hidden" name="LastName" value="@Model.LastName"/>
+                            <input type="hidden" name="Street" value="@Model.Street"/>
+                            <input type="hidden" name="StreetNumber" value="@Model.StreetNumber"/>
+                            <input type="hidden" name="PostalCode" value="@Model.PostalCode"/>
+                            <input type="hidden" name="City" value="@Model.City"/>
+                            <div class="mb-3">
+                                <label class="form-label">Kies uw bank</label>
+                                <select class="form-select" name="method" aria-label="Kies uw bank">
+                                    <option selected>Selecteer uw bank</option>
+                                    <option>BankSchroef</option>
+                                    <option>RaboStoel</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 btn-lg">
+                                Betalen
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            Je winkelwagen is leeg.
+                            <div class="mt-2">
+                                <a asp-page="/Producten" class="btn btn-primary btn-sm me-2">Naar producten</a>
+                                <a asp-page="/Winkelwagen" class="btn btn-secondary btn-sm">Winkelwagen</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
