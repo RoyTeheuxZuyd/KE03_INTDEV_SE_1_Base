@@ -70,10 +70,13 @@ namespace KE03_INTDEV_SE_1_Base.Pages
 
             foreach (var item in cartItems)
             {
-                for (int i = 0; i < item.Quantity; i++)
+                order.OrderLines.Add(new OrderLine
                 {
-                    order.Products.Add(item.Product);
-                }
+                    Product = item.Product,
+                    ProductId = item.Product.Id,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price
+                });
             }
 
             _orderRepository.AddOrder(order);

@@ -45,12 +45,14 @@
                                 Order van @order.OrderDate.ToString("dd-MM-yyyy")
                             </h5>
 
-                            @if (order.Products.Any())
+                            @if (order.OrderLines.Any())
                             {
                                 <div class="row g-3">
 
-                                    @foreach (var product in order.Products)
+                                    @foreach (var line in order.OrderLines)
                                     {
+                                        var product = line.Product;
+                                        var quantity = line.Quantity;
                                         var imagePath = $"/Media/{product.ProductImageName}";
 
                                         <div class="col-md-4">
@@ -69,9 +71,10 @@
                                                         @product.Description
                                                     </p>
 
-                                                    <h6>
-                                                        € @product.Price
-                                                    </h6>
+                                                    <p class="mb-1">
+                                                        <strong>Aantal:</strong>
+                                                        @quantity
+                                                    </p>
 
                                                     @if (product.Parts.Any())
                                                     {
@@ -99,7 +102,7 @@
                                 <hr />
                                 <h5 class="text-end">
                                     Ordertotaal:
-                                    € @order.Products.Sum(p => p.Price)
+                                    € @order.OrderLines.Sum(l => l.Price * l.Quantity)
                                 </h5>
                             }
                             else

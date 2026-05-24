@@ -110,8 +110,13 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 var product = _productRepository.GetProductById(item.Product.Id);
                 if (product != null)
                 {
-                    for (int i = 0; i < item.Quantity; i++)
-                        order.Products.Add(product);
+                    order.OrderLines.Add(new OrderLine
+                    {
+                        Product = product,
+                        ProductId = product.Id,
+                        Quantity = item.Quantity,
+                        Price = product.Price 
+                    });
                 }
             }
 

@@ -11,6 +11,7 @@ namespace DataAccessLayer
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Part> Parts { get; set; }
 
@@ -26,9 +27,17 @@ namespace DataAccessLayer
             //    .WithMany(c => c.Orders)
             //    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Product>()
-                .HasMany(p => p.Orders)
-                .WithMany(o => o.Products);
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderLines)
+                .WithOne(ol => ol.Order)
+                .HasForeignKey(ol => ol.OrderId)
+                .IsRequired();
+
+            modelBuilder.Entity<OrderLine>()
+                .HasOne(ol => ol.Product)
+                .WithMany()
+                .HasForeignKey(ol => ol.ProductId)
+                .IsRequired();
 
             modelBuilder.Entity<Part>()
                 .HasMany(p => p.Products)

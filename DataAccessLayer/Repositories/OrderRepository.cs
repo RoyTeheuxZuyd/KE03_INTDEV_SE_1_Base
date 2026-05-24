@@ -34,16 +34,18 @@ namespace DataAccessLayer.Repositories
         {
             return _context.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.Products)
-                    .ThenInclude(p => p.Parts);
+                .Include(o => o.OrderLines)
+                    .ThenInclude(l => l.Product)
+                        .ThenInclude(p => p.Parts);
         }
 
         public Order? GetOrderById(int id) //we need to get customer, then products and the parts of the products and get them by order id.
         {
             return _context.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.Products)
-                    .ThenInclude(p => p.Parts)
+                .Include(o => o.OrderLines)
+                    .ThenInclude(l => l.Product)
+                        .ThenInclude(p => p.Parts)
                 .FirstOrDefault(o => o.Id == id);
         }
 
