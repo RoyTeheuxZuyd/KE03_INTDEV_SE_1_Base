@@ -1,13 +1,124 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+############################################
+# Build results
+############################################
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+out/
+publish/
 
-/DataAccessLayer/bin/Debug/net9.0
-/DataAccessLayer/obj
-/.vs
-/KE03_INTDEV_SE_1_Base/obj
-/DataAccessLayer/bin/Debug/net8.0
-/KE03_INTDEV_SE_1_Base/bin/Debug/net8.0
-/KE03_INTDEV_SE_1_Base/MatrixInc.db
-/KE03_INTDEV_SE_1_Base/MatrixInc.db-shm
-/KE03_INTDEV_SE_1_Base/MatrixInc.db-wal
+############################################
+# ASP.NET Core
+############################################
+wwwroot/lib/
+appsettings.Development.json
+secrets.json
+
+############################################
+# User-specific files
+############################################
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+############################################
+# Visual Studio
+############################################
+.vs/
+
+############################################
+# JetBrains Rider / ReSharper
+############################################
+.idea/
+*.sln.iml
+
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+############################################
+# NuGet
+############################################
+packages/
+*.nupkg
+*.snupkg
+
+# NuGet Package Restore
+!**/packages/build/
+.nuget/packages/
+
+############################################
+# Logs
+############################################
+*.log
+
+############################################
+# Database files
+############################################
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+############################################
+# Node (if using frontend tooling)
+############################################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+############################################
+# Environment files
+############################################
+.env
+.env.*
+
+############################################
+# OS generated files
+############################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+############################################
+# Temporary files
+############################################
+*.tmp
+*.temp
+*.cache
+
+############################################
+# Test results
+############################################
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+############################################
+# Publish profiles
+############################################
+Properties/PublishProfiles/
+
+############################################
+# Azure
+############################################
+.azure/
+
+############################################
+# Docker
+############################################
+docker-compose.override.yml
+
+############################################
+# Generated files
+############################################
+Generated/
