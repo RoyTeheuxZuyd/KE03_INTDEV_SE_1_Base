@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KE03_INTDEV_SE_1_Base</title>
+    <title>@ViewData["Title"] - Matrix.Inc</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KE03_INTDEV_SE_1_Base.styles.css" asp-append-version="true" />
@@ -14,24 +14,31 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 py-0"> 
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3 py-0">
             <div class="container-fluid px-0 d-flex align-items-center">
                 <a class="navbar-brand m-0 p-0" asp-area="" asp-page="/Index">
-                    <img src="~/MediaFunctional/matrix_inc_logo.png"
+                    <img src="~/MediaFunctional/matrixinc_logo.png"
                          alt="Matrix Inc Logo"
                          style="height: 100px; width: auto;" />
                 </a>
 
-                <div class="collapse navbar-collapse d-sm-flex justify-content-center">
+                <div class="collapse navbar-collapse d-sm-flex justify-content-left">
                     <ul class="navbar-nav align-items-center">
-                        @* <li class="nav-item">
+                        <!--
+                        <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/Index">
                                 Home
                             </a>
-                        </li> *@
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/Producten">
                                 Assortiment
+                            </a>
+                        </li>
+                        -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/CustomerOrder">
+                                Customer Orders
                             </a>
                         </li>
                     </ul>
@@ -95,12 +102,21 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - KE03_INTDEV_SE_1_Base -
+<footer class="border-top footer text-muted">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            &copy; 2026 - Matrix.Inc -
             <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <a> | </a>
+            <a asp-area="" asp-page="/Info">Info</a>
         </div>
-    </footer>
+        <div>
+            <img src="Media/bank1.png" alt="BankSchroef" style="height: 75px; object-fit: cover;" />
+            <img src="Media/bank2.png" alt="RaboStoel" style="height: 75px; object-fit: cover;" />
+            <img src="Media/bank3.png" alt="NSB" style="height: 75px; object-fit: cover;" />
+        </div>
+    </div>
+</footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

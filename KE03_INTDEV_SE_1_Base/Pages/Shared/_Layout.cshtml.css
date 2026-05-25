@@ -3,8 +3,16 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
   white-space: normal;
-  text-align: center;
+  text-align: justify;
   word-break: break-all;
+  font-size: xx-large;
+}
+
+.navbar {
+  background-image: url('/MediaFunctional/matrix.jpg') !important;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent !important;
 }
 
 a {
