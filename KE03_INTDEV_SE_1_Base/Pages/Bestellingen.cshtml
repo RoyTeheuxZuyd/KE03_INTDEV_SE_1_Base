@@ -17,7 +17,7 @@
             var customer = customerGroup.Key;
 
             <div class="card shadow mb-5">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header bg-dark text-white"> <!-- haal de bestellingen op om ze in cards te plaatsen-->
                     <h3 class="mb-1">
                         @customer?.Name
                     </h3>
@@ -36,7 +36,7 @@
                         @customerGroup.Max(o => o.OrderDate).ToString("dd-MM-yyyy")
                     </p>
                 </div>
-
+                
                 <div class="card-body">
                     @foreach (var order in customerGroup.OrderByDescending(o => o.OrderDate))
                     {
@@ -44,6 +44,10 @@
                             <h5 class="mb-3">
                                 Order van @order.OrderDate.ToString("dd-MM-yyyy")
                             </h5>
+
+                            <span class="badge bg-primary mb-3"> <!-- order status -->
+                                Order ontvangen
+                            </span>
 
                             @if (order.OrderLines.Any())
                             {

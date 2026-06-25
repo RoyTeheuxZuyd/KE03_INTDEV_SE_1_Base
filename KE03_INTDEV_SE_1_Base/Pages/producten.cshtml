@@ -5,52 +5,61 @@
     ViewData["Title"] = "Product page";
 }
 
-<div class="container">
-    <div class="row g-4">
+<div class="product-page">
 
-        @foreach (var p in Model.Products)
-        {
-            var imagePath = $"/Media/{p.ProductImageName}";
+    <!-- Searchbar and categories (non functional, visual only) -->
+    <div class="product-filters">
+        <h5>Zoeken</h5>
+        <input type="text" class="form-control mb-4" placeholder="Zoek een product..." />
 
-            <div class="col-md-4">
-                <div class="card h-100 shadow">
-                    <img src="@imagePath"
-                         class="card-img-top"
-                         alt="@p.Name"
-                         style="height: 250px; object-fit: cover;" />
+        <h5>Categorieën</h5>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cat1">
+            <label class="form-check-label" for="cat1">Apparatuur</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cat2">
+            <label class="form-check-label" for="cat2">Meubels</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cat3">
+            <label class="form-check-label" for="cat3">Gereedschappen</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cat4">
+            <label class="form-check-label" for="cat4">Overig</label>
+        </div>
+    </div>
 
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
-                            @p.Name
-                        </h5>
+    <!-- Products (functional) -->
+    <div class="product-list">
+        <div class="row g-4">
+            @foreach (var p in Model.Products)
+            {
+                var imagePath = $"/Media/{p.ProductImageName}"; <!-- use the productimage that matches image filename-->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow">
+                        <img src="@imagePath"
+                             class="card-img-top"
+                             alt="@p.Name"
+                             style="height: 250px; object-fit: cover;" />
 
-                        <p class="card-text">
-                            @p.Description
-                        </p>
-
-                        <h4 class="mt-auto">
-                            € @p.Price
-                        </h4>
-
-                        <div class="d-flex gap-2 mt-3">
-                            <a asp-page="/producteninfo"
-                               asp-route-id="@p.Id"
-                               class="btn btn-info">
-                                Info
-                            </a>
-
-                            @* disabled after feedback, but the code still works:
-                            <form method="post" asp-page-handler="AddToCart">
-                                <input type="hidden" name="id" value="@p.Id" />
-
-                                <button type="submit" class="btn btn-success">
-                                    Voeg toe
-                                </button>
-                            </form> *@
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@p.Name</h5>
+                            <p class="card-text">@p.Description</p>
+                            <h4 class="mt-auto">€ @p.Price</h4>
+                            <div class="d-flex gap-2 mt-3">
+                                <a asp-page="/producteninfo"
+                                   asp-route-id="@p.Id"
+                                   class="btn btn-info">
+                                    Info
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+
+        </div>
     </div>
 </div>
