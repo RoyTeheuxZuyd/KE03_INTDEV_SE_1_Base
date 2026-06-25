@@ -9,11 +9,18 @@
         <h1 class="display-4">
             Welkom Bij Matrix Inc.
         </h1>
-
-        <p class="lead">
-            Nieuwe producten in ons assortiment:
-        </p>
-    </div>
+</div>
+<div class="homepage-banner mb-4">
+    <img src="/MediaFunctional/homepagebanner.png"
+            alt="Homepage banner"
+            class="img-fluid w-100"
+            style="max-height: 180px; object-fit: cover;"/>
+</div>
+<div>
+    <p class="lead">
+        Nieuwe producten in ons assortiment:
+    </p>
+</div>
 
     <div class="row g-4">
         @foreach (var p in Model.LatestProducts)
@@ -22,7 +29,6 @@
             
             <div class="col-md-4">
                 <div class="card h-100 shadow">
-
                     <img src="@imagePath"
                          class="card-img-top"
                          alt="@p.Name"

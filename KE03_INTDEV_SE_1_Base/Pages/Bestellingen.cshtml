@@ -46,13 +46,12 @@
                             </h5>
 
                             <span class="badge bg-primary mb-3"> <!-- order status -->
-                                Order ontvangen
+                                Order in behandeling
                             </span>
 
                             @if (order.OrderLines.Any())
                             {
                                 <div class="row g-3">
-
                                     @foreach (var line in order.OrderLines)
                                     {
                                         var product = line.Product;
@@ -70,11 +69,9 @@
                                                     <h5 class="card-title">
                                                         @product.Name
                                                     </h5>
-
                                                     <p class="card-text">
                                                         @product.Description
                                                     </p>
-
                                                     <p class="mb-1">
                                                         <strong>Aantal:</strong>
                                                         @quantity
