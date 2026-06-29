@@ -21,15 +21,26 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             _cartService = cartService;
         }
 
-        public void OnGet(string? search)
+        public void OnGet(string? search, string? sort)
         {
-            if (string.IsNullOrWhiteSpace(search))
+            var products = _productRepository.GetAllProducts();
+
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                Products = _productRepository.GetAllProducts();
-                return;
+                products = products.Where(p =>
+                    p.Name.Contains(search, StringComparison.OrdinalIgnoreCase)); //for searching in searchbar
             }
 
-            Products = _productRepository.SearchProducts(search);//for searching in searchbar
+            products = sort switch //sorting 
+            {
+                "price_asc" => products.OrderBy(p => p.Price),
+                "price_desc" => products.OrderByDescending(p => p.Price),
+                "newest" => products.OrderByDescending(p => p.Id), //uses the id for oldest to newest, higher id number = newer
+                "oldest" => products.OrderBy(p => p.Id),
+                _ => products
+            };
+
+            Products = products;
         }
 
         public IActionResult OnPostAddToCart(int id)
