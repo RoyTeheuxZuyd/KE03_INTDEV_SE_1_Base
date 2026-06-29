@@ -24,7 +24,7 @@
             <h1>@Model.Product?.Name</h1> <!-- Create card to display the info -->
             <div class="card p-4">
                 <h4>Prijs</h4>
-                <p>€ @Model.Product?.Price</p>
+                <p>€ @Model.Product?.Price.ToString("0.00")</p>
 
                 <h4>Omschrijving</h4>
                 <p>@Model.Product?.Description</p>

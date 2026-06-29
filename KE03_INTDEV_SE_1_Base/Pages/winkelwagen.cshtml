@@ -59,8 +59,8 @@
                         </div>
                     </td>
 
-                    <td>€ @item.Product.Price</td>
-                    <td>€ @(item.Product.Price* item.Quantity)</td>
+                    <td>€ @item.Product.Price.ToString("0.00")</td>
+                    <td>€ @((item.Product.Price * item.Quantity).ToString("0.00"))</td>
 
                     <td>
                         <form method="post" asp-page-handler="Remove">
@@ -82,7 +82,7 @@
 
     <h4>
         Totaal:
-        € @Model.CartItems.Sum(x => x.Product.Price * x.Quantity)
+        € @Model.CartItems.Sum(x => x.Product.Price * x.Quantity).ToString("0.00")
     </h4>
 
     <div class="d-flex gap-2 mt-3">

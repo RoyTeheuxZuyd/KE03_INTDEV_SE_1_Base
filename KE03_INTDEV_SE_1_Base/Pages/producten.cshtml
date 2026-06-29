@@ -56,9 +56,9 @@
 
                         <div class="card-body d-flex flex-column">
                             <h5>@p.Name</h5>
-                            <p>@p.Description</p>
+                            @* <p>@p.Description</p> disabled to lessen information overload for customer*@
 
-                            <h4 class="mt-auto">€ @p.Price</h4>
+                            <h4 class="mt-auto">€ @p.Price.ToString("0.00")</h4>
                             <div class="mt-3">
                                 <a asp-page="/producteninfo"
                                    asp-route-id="@p.Id"

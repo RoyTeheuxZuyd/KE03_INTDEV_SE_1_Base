@@ -39,13 +39,11 @@
                             @p.Name
                         </h5>
 
-                        <p class="card-text">
+                        @* <p class="card-text">
                             @p.Description
-                        </p>
+                        </p> disabled to reduce information overload on customers*@
 
-                        <h4 class="mt-auto">
-                            € @p.Price
-                        </h4>
+                        <h4 class="mt-auto">€ @p.Price.ToString("0.00")</h4>
 
                         <div class="d-flex gap-2 mt-3">
                             <a asp-page="/producteninfo"
