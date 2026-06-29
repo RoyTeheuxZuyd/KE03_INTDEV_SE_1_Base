@@ -21,9 +21,15 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             _cartService = cartService;
         }
 
-        public void OnGet()
+        public void OnGet(string? search)
         {
-            Products = _productRepository.GetAllProducts();
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                Products = _productRepository.GetAllProducts();
+                return;
+            }
+
+            Products = _productRepository.SearchProducts(search);//for searching in searchbar
         }
 
         public IActionResult OnPostAddToCart(int id)

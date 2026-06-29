@@ -44,5 +44,12 @@ namespace DataAccessLayer.Repositories
             _context.Products.Update(product);
             _context.SaveChanges();
         }
+
+        public IEnumerable<Product> SearchProducts(string searchTerm)
+        {
+            return _context.Products
+                .Include(p => p.Parts)
+                .Where(p => p.Name.ToLower().Contains(searchTerm.ToLower()));
+        }
     }
 }

@@ -6,12 +6,20 @@
 }
 
 <div class="producten-page">
-    <!-- searchbar, sorting and categories non functional, visual only -->
+    <!-- sorting and categories non functional, visual only -->
     <div class="producten-filters">
         <h4>Zoeken & Filters</h4>
-        <input type="text"
-               class="form-control mb-3"
-               placeholder="Zoek een product..." />
+        <form method="get" class="mb-3">
+            <input type="search"
+                   class="form-control"
+                   name="search"
+                   value="@Request.Query["search"]"
+                   placeholder="Zoek een product..." />
+
+            @* <button type="submit" class="btn btn-primary">
+                Zoeken
+            </button> button not really necessary because you can just press enter *@
+        </form>
 
         <div class="d-flex flex-wrap gap-3">
             <div class="form-check">
