@@ -103,7 +103,7 @@
                                 <hr />
                                 <h5 class="text-end">
                                     Ordertotaal:
-                                    € @order.OrderLines.Sum(l => l.Price * l.Quantity)
+                                    € @order.OrderLines.Sum(l => l.Price * l.Quantity).ToString("0.00")
                                 </h5>
                             }
                             else

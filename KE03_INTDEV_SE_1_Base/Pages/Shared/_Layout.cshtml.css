@@ -9,6 +9,11 @@ a.navbar-brand {
 
 .navbar {
     font-size: 1.25rem;
+    overflow-x: hidden;
+}
+
+.navbar .position-relative {
+    overflow: visible;
 }
 
 .navbar .nav-link {
@@ -66,6 +71,15 @@ button.accept-policy {
 
 .producten-content {
     padding: 10px 0;
+}
+
+.cart-badge {
+    font-size: 0.75rem;
+    min-width: 22px;
+    max-width: 32px;
+    padding: 3px 6px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .footer {
