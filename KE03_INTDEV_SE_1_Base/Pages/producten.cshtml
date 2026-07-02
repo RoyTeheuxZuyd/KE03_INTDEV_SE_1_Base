@@ -6,7 +6,6 @@
 }
 
 <div class="producten-page">
-    <!-- categories non functional they are visual only -->
     <div class="producten-filters">
         <h4>Zoeken & Filters</h4>
         <form method="get" class="mb-3">
@@ -14,14 +13,11 @@
                    class="form-control"
                    name="search"
                    value="@Request.Query["search"]"
-                   placeholder="Zoek een product op naam" /> <!-- search uses javascript to clear with the X in searchbar-->
-
-            @* <button type="submit" class="btn btn-primary">
-                Zoeken
-            </button> button not really necessary because you can just press enter *@
+                   placeholder="Zoek een product op naam" />
         </form>
 
-        <div class="d-flex flex-wrap gap-3">
+        <h5 class="mt-4">Categorieën</h5>
+        <div class="d-flex flex-column gap-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="cat1">
                 <label class="form-check-label" for="cat1">Apparatuur</label>
@@ -39,42 +35,39 @@
                 <label class="form-check-label" for="cat4">Overig</label>
             </div>
         </div>
-        <div class="mt-3" style="max-width: 250px;">
-            <form method="get" class="mt-3" style="max-width: 250px;">
-                <label for="sort" class="form-label">Sorteren</label>
 
-                <select id="sort"
-                        name="sort"
-                        class="form-select"
-                        onchange="this.form.submit()">
-                    <option value="" selected="@string.IsNullOrEmpty(Request.Query["sort"])">
-                        Standaard sortering
-                    </option>
-                    <option value="price_asc" selected="@(Request.Query["sort"] == "price_asc")">
-                        Prijs: laag naar hoog
-                    </option>
-                    <option value="price_desc" selected="@(Request.Query["sort"] == "price_desc")">
-                        Prijs: hoog naar laag
-                    </option>
-                    <option value="newest" selected="@(Request.Query["sort"] == "newest")">
-                        Nieuw naar oud
-                    </option>
-                    <option value="oldest" selected="@(Request.Query["sort"] == "oldest")">
-                        Oud naar nieuw
-                    </option>
-                </select>
-            </form>
-        </div>
+        <form method="get" class="mt-5">
+            <label for="sort" class="form-label">Sorteren</label>
+            <select id="sort"
+                    name="sort"
+                    class="form-select"
+                    onchange="this.form.submit()">
+                <option value="" selected="@string.IsNullOrEmpty(Request.Query["sort"])">
+                    Standaard sortering
+                </option>
+                <option value="price_asc" selected="@(Request.Query["sort"] == "price_asc")">
+                    Prijs: laag naar hoog
+                </option>
+                <option value="price_desc" selected="@(Request.Query["sort"] == "price_desc")">
+                    Prijs: hoog naar laag
+                </option>
+                <option value="newest" selected="@(Request.Query["sort"] == "newest")">
+                    Nieuw naar oud
+                </option>
+                <option value="oldest" selected="@(Request.Query["sort"] == "oldest")">
+                    Oud naar nieuw
+                </option>
+            </select>
+        </form>
     </div>
 
-    <hr class="producten-divider" />
     <div class="producten-content">
         <div class="row g-4">
             @foreach (var p in Model.Products)
             {
-                var imagePath = $"/Media/{p.ProductImageName}"; <!-- use name of image file to match it to db imagename to load-->
+                var imagePath = $"/Media/{p.ProductImageName}";
 
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="card h-100 shadow">
                         <img src="@imagePath"
                              class="card-img-top"
@@ -82,8 +75,6 @@
 
                         <div class="card-body d-flex flex-column">
                             <h5>@p.Name</h5>
-                            @* <p>@p.Description</p> disabled to lessen information overload for customer*@
-
                             <h4 class="mt-auto">€ @p.Price.ToString("0.00")</h4>
                             <div class="mt-3">
                                 <a asp-page="/producteninfo" asp-route-id="@p.Id" class="btn btn-info">

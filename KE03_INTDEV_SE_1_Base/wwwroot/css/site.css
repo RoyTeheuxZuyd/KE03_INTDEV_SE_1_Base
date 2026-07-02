@@ -20,3 +20,70 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Producten page - sidebar layout */
+.producten-page {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.producten-filters {
+  width: 250px;
+  flex-shrink: 0;
+  margin-right: auto;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.producten-filters h4 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.filters-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+.producten-filters .form-control,
+.producten-filters .form-select {
+  font-size: 14px;
+}
+
+.producten-filters .form-check {
+  font-size: 14px;
+}
+
+.producten-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.producten-divider {
+  display: none;
+}
+
+/* Responsive - stack on mobile */
+@media (max-width: 992px) {
+  .producten-page {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .producten-filters {
+    width: 100%;
+    position: static;
+    margin-right: 0;
+  }
+}
